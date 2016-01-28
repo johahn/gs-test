@@ -7,6 +7,18 @@
 
 The GS-Test library contains utility methods and classes designed to simplify testing of applications implemented using GigaSpaces. 
 
+## Maven
+
+GS-Test packed as a single jar file. Maven users can get GS-Test using the following coordinates:
+
+```xml
+<dependency>
+  <groupId>com.avanza.gs</groupId>
+  <artifactId>gs-test</artifactId>
+  <version>0.1.0</version>
+</dependency>
+``` 
+
 ## License
 The GS-Test library is released under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
 

@@ -4,6 +4,107 @@
 	<groupId>com.avanza.gs</groupId>
 	<artifactId>gs-test</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<name>${project.artifactId}</name>
+	<description>${project.artifactId}</description>
+	<url>https://github.com/AvanzaBank/gs-test</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Elias Lindholm</name>
+			<email>elias.lindholm@avanza.se</email>
+			<organization>Avanza</organization>
+			<organizationUrl>https://github.com/AvanzaBank</organizationUrl>
+		</developer>
+  	</developers>
+	<scm>
+	  <connection>scm:git:git@github.com:AvanzaBank/gs-test.git</connection>
+	  <developerConnection>scm:git:git@github.com:AvanzaBank/gs-test.git</developerConnection>
+	  <url>git@github.com:AvanzaBank/gs-test.git</url>
+	</scm>
+	<repositories>
+		<repository>
+			<id>gigaspaces</id>
+			<name>GigaSpaces</name>
+			<url>http://maven-repository.openspaces.org/</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+			<!--  javadoc, source and gpg plugin from above -->
+			<!-- All artifacts deployed to the central repository must be signed -->
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.5</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				
+				<!-- This plugin makes sure that a source jar is always built together 
+					with the binary jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+	
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<configuration>
+						<excludePackageNames>example*:se*</excludePackageNames>
+						<aggregate>true</aggregate>
+						<show>public</show>
+						<nohelp>true</nohelp>
+						<header>Gigaspaces Test Utilities ${project.version}</header>
+						<footer>Gigaspaces Test Utilities ${project.version}</footer>
+						<doctitle>Gigaspaces Test Utilities ${project.version}</doctitle>
+					</configuration>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+			</build>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -32,10 +133,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 	</dependencies>
 	<properties>
@@ -110,21 +207,19 @@
 				<groupId>org.mockito</groupId>
 				<artifactId>mockito-core</artifactId>
 				<version>1.9.0</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.hamcrest</groupId>
 				<artifactId>hamcrest-library</artifactId>
 				<version>1.2.1</version>
+				<scope>test</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>${slf4j.version}</version>
-			</dependency>
-			<dependency>
-		  		<groupId>com.github.fakemongo</groupId>
-		  		<artifactId>fongo</artifactId>
-		  		<version>1.6.5</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -345,7 +440,7 @@
 				<artifactId>versions-maven-plugin</artifactId>
 				<configuration>
 					<includes>
-						<include>com.avanza.ymer*</include>
+						<include>com.avanza.gs*</include>
 					</includes>
 				</configuration>
 			</plugin>

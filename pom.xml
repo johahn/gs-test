@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.avanza.gs</groupId>
 	<artifactId>gs-test</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2.0-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<description>${project.artifactId}</description>
 	<url>https://github.com/AvanzaBank/gs-test</url>
@@ -111,24 +111,8 @@
 			<artifactId>junit</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.gigaspaces</groupId>
-			<artifactId>gs-openspaces</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>com.gigaspaces</groupId>
-			<artifactId>gs-runtime</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>tools</artifactId>
-					<groupId>com.sun</groupId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.gigaspaces</groupId>
+			<artifactId>xap-openspaces</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -143,7 +127,7 @@
 		<spring.version>4.1.1.RELEASE</spring.version>
 		<spring.groupId>org.springframework</spring.groupId>
 		<slf4j.version>1.7.10</slf4j.version>
-		<gigaspaces.version>10.1.1-12800-RELEASE</gigaspaces.version>
+		<gigaspaces.version>12.1.1</gigaspaces.version>
 		<junit.version>4.11</junit.version>
 		<hamcrest.version>1.2.1</hamcrest.version>
 		<mockito.version>1.9.0</mockito.version>
@@ -157,13 +141,8 @@
 				<version>${slf4j.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.gigaspaces</groupId>
-				<artifactId>gs-openspaces</artifactId>
-				<version>${gigaspaces.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.gigaspaces</groupId>
-				<artifactId>gs-runtime</artifactId>
+				<groupId>org.gigaspaces</groupId>
+				<artifactId>xap-openspaces</artifactId>
 				<version>${gigaspaces.version}</version>
 			</dependency>
 			<dependency>

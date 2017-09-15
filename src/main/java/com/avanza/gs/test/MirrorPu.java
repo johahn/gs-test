@@ -40,6 +40,8 @@ public class MirrorPu implements PuRunner {
 		this.lookupGroupName = config.lookupGroupName;
 		this.autostart = true;
 		this.parentContext = config.parentContext;
+		this.contextProperties.put("gs.space.url.arg.timeout", "10");
+		this.contextProperties.put("gs.space.url.arg.groups", lookupGroupName);
 	}
 
 	@Override
@@ -62,8 +64,6 @@ public class MirrorPu implements PuRunner {
 	}
 
 	private BeanLevelProperties createBeanLevelProperties() {
-		contextProperties.put("gs.space.url.arg.timeout", "10");
-		contextProperties.put("gs.space.url.arg.groups", getLookupGroupName());
 		BeanLevelProperties beanLevelProperties = new BeanLevelProperties();		
 		beanLevelProperties.setContextProperties(contextProperties);
 		return beanLevelProperties;

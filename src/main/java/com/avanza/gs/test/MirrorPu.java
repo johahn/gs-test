@@ -27,12 +27,12 @@ import org.springframework.context.ApplicationContext;
 public class MirrorPu implements PuRunner {
 
 	private IntegratedProcessingUnitContainer container;
-	private String gigaSpaceBeanName = "gigaSpace";
-	private String puXmlPath;
+	private final String gigaSpaceBeanName = "gigaSpace";
+	private final String puXmlPath;
 	private Properties contextProperties = new Properties();
-	private String lookupGroupName;
-	private boolean autostart;
-	private ApplicationContext parentContext;
+	private final String lookupGroupName;
+	private final boolean autostart;
+	private final ApplicationContext parentContext;
 	
 	public MirrorPu(MirrorPuConfigurer config) {
 		this.puXmlPath = config.puXmlPath;
@@ -40,6 +40,8 @@ public class MirrorPu implements PuRunner {
 		this.lookupGroupName = config.lookupGroupName;
 		this.autostart = true;
 		this.parentContext = config.parentContext;
+		this.contextProperties.put("gs.space.url.arg.timeout", "10");
+		this.contextProperties.put("gs.space.url.arg.groups", lookupGroupName);
 	}
 
 	@Override
@@ -62,9 +64,8 @@ public class MirrorPu implements PuRunner {
 	}
 
 	private BeanLevelProperties createBeanLevelProperties() {
-		BeanLevelProperties beanLevelProperties = new BeanLevelProperties();
+		BeanLevelProperties beanLevelProperties = new BeanLevelProperties();		
 		beanLevelProperties.setContextProperties(contextProperties);
-		beanLevelProperties.getBeanProperties("space").put("gs.space.url.arg.timeout", "10");
 		return beanLevelProperties;
 	}
 	
@@ -78,6 +79,7 @@ public class MirrorPu implements PuRunner {
 		return this.lookupGroupName;
 	}
 	
+	@Override
 	public boolean autostart() {
 		return this.autostart;
 	}

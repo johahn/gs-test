@@ -39,7 +39,12 @@ public class MirrorPuConfigurer {
 		this.parentContext = parentContext;
 		return this;
 	}
-
+		
+	public MirrorPuConfigurer lookupGroup(String group) {
+		this.lookupGroupName = group;
+		return this;
+	}
+	
 	public RunningPu configure() {
 		return new RunningPuImpl(new MirrorPu(this));
 	}

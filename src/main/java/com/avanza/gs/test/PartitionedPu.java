@@ -36,15 +36,15 @@ import org.springframework.context.ApplicationContext;
 public final class PartitionedPu implements PuRunner {
 
 	private CompoundProcessingUnitContainer container;
-	private String gigaSpaceBeanName = "gigaSpace";
-	private String puXmlPath;
-	private Integer numberOfPrimaries;
-	private Integer numberOfBackups;
-	private Properties contextProperties = new Properties();
-	private Map<String, Properties> beanProperies = new HashMap<>();
-	private String lookupGroupName;
-	private boolean autostart;
-	private ApplicationContext parentContext;
+	private final String gigaSpaceBeanName = "gigaSpace";
+	private final String puXmlPath;
+	private final Integer numberOfPrimaries;
+	private final Integer numberOfBackups;
+	private final Properties contextProperties = new Properties();
+	private final Map<String, Properties> beanProperies = new HashMap<>();
+	private final String lookupGroupName;
+	private final boolean autostart;
+	private final ApplicationContext parentContext;
 
 	public PartitionedPu(PartitionedPuConfigurer configurer) {
 		this.puXmlPath = configurer.puXmlPath;
@@ -56,6 +56,8 @@ public final class PartitionedPu implements PuRunner {
 		this.autostart = configurer.autostart;
 		this.parentContext = configurer.parentContext;
 		this.contextProperties.put("spaceName", UniqueSpaceNameLookup.getSpaceNameWithSequence(configurer.spaceName));
+		this.contextProperties.put("gs.space.url.arg.groups", lookupGroupName);
+		this.contextProperties.put("gs.space.url.arg.timeout", "10");
 	}
 
 	@Override
@@ -93,9 +95,6 @@ public final class PartitionedPu implements PuRunner {
 		for (Map.Entry<String, Properties> beanProperties : beanProperies.entrySet()) {
 			beanLevelProperties.setBeanProperties(beanProperties.getKey(), beanProperties.getValue());
 		}
-		// TODO: set lookup-group on space-bean name instead of using system-property in RunningPuImpl
-//		beanLevelProperties.getBeanProperties("space").put("gs.space.url.arg.groups", getLookupGroupName()); 
-		beanLevelProperties.getBeanProperties("space").put("gs.space.url.arg.timeout", "10");
 		return beanLevelProperties;
 	}
 	
@@ -109,6 +108,7 @@ public final class PartitionedPu implements PuRunner {
 		return this.lookupGroupName;
 	}
 	
+	@Override
 	public boolean autostart() {
 		return this.autostart ;
 	}

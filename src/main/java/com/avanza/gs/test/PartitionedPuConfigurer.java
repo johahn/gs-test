@@ -68,6 +68,15 @@ public final class PartitionedPuConfigurer {
 		return this;
 	}
 
+	/**
+	 * @deprecated For backwards compatibility only. Use {@link #lookupGroup(String)} instead
+	 */
+	@Deprecated
+	public PartitionedPuConfigurer groupName(String group) {
+		this.lookupGroupName = group;
+		return this;
+	}
+
 	public RunningPu configure() {
 		if (startAsync) {
 			return new RunningPuImpl(new AsyncPuRunner(new PartitionedPu(this)));

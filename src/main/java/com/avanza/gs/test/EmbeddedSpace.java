@@ -30,7 +30,7 @@ public class EmbeddedSpace implements TestRule {
 	private final GigaSpace gigaSpace;
 
 	public EmbeddedSpace() {
-		this(UUID.randomUUID().toString());
+		this("space-" + UUID.randomUUID().toString());
 	}
 	
 	public EmbeddedSpace(String spaceName) {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Avanza Bank AB
+ * Copyright 2017 Avanza Bank AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,7 +39,12 @@ public class MirrorPuConfigurer {
 		this.parentContext = parentContext;
 		return this;
 	}
-
+		
+	public MirrorPuConfigurer lookupGroup(String group) {
+		this.lookupGroupName = group;
+		return this;
+	}
+	
 	public RunningPu configure() {
 		return new RunningPuImpl(new MirrorPu(this));
 	}

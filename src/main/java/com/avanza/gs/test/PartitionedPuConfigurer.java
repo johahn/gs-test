@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Avanza Bank AB
+ * Copyright 2017 Avanza Bank AB
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,6 +64,15 @@ public final class PartitionedPuConfigurer {
 	}
 
 	public PartitionedPuConfigurer lookupGroup(String group) {
+		this.lookupGroupName = group;
+		return this;
+	}
+
+	/**
+	 * @deprecated For backwards compatibility only. Use {@link #lookupGroup(String)} instead
+	 */
+	@Deprecated
+	public PartitionedPuConfigurer groupName(String group) {
 		this.lookupGroupName = group;
 		return this;
 	}

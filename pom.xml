@@ -422,6 +422,10 @@
 						<id>enforce</id>
 						<configuration>
 							<rules>
+								<requireReleaseDeps>
+									<message>No SNAPSHOT dependencies are allowed when building a release!</message>
+									<failWhenParentIsSnapshot>false</failWhenParentIsSnapshot>
+								</requireReleaseDeps>
 							</rules>
 						</configuration>
 						<goals>
@@ -447,6 +451,7 @@
 				<version>1.4</version>
 			</plugin>
 
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -459,6 +464,7 @@
 					</includes>
 				</configuration>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 </project>

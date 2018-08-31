@@ -18,6 +18,9 @@ package com.avanza.gs.test;
 import org.junit.rules.TestRule;
 import org.openspaces.core.GigaSpace;
 import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.ListableBeanFactory;
+
+import java.util.Collection;
 
 public interface RunningPu extends TestRule, AutoCloseable  {
 	
@@ -32,5 +35,7 @@ public interface RunningPu extends TestRule, AutoCloseable  {
 	void stop() throws Exception;
 
 	BeanFactory getPrimaryInstanceApplicationContext(int partition);
-	
+
+	Collection<ListableBeanFactory> getApplicationContexts();
+
 }

@@ -15,11 +15,6 @@
  */
 package com.avanza.gs.test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.cluster.ClusterInfo;
 import org.openspaces.core.properties.BeanLevelProperties;
@@ -27,6 +22,11 @@ import org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer;
 import org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainerProvider;
 import org.openspaces.pu.container.support.CompoundProcessingUnitContainer;
 import org.springframework.context.ApplicationContext;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * 
@@ -124,4 +124,8 @@ public final class PartitionedPu implements PuRunner {
 		return container.getApplicationContext();
 	}
 
+	@Override
+	public int getNumInstances() {
+		return numberOfPrimaries;
+	}
 }

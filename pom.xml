@@ -420,6 +420,17 @@
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<version>1.4.1</version>
 				<executions>
+					<execution>
+						<id>enforce</id>
+						<configuration>
+							<rules>
+								<alwaysPass/>
+							</rules>
+						</configuration>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 

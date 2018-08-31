@@ -413,6 +413,7 @@
 				</executions>
 			</plugin>
 
+			<!--
 			<plugin>
 				<artifactId>maven-enforcer-plugin</artifactId>
 				<dependencies>
@@ -438,6 +439,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

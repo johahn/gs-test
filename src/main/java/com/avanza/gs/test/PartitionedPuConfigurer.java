@@ -89,6 +89,11 @@ public final class PartitionedPuConfigurer {
 		return this;
 	}
 	
+	public PartitionedPuConfigurer contextProperties(ContextProperties properties) {
+		this.contextProperties = properties.getProperties();
+		return this;
+	}
+
 	public PartitionedPuConfigurer contextProperty(String name, String value) {
 		this.contextProperties.setProperty(name, value);
 		return this;

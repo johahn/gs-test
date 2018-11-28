@@ -30,6 +30,8 @@ public interface PuRunner {
 
 	boolean autostart();
 
+	int getNumInstances();
+
 	ApplicationContext getPrimaryInstanceApplicationContext(int partition);
 
 }

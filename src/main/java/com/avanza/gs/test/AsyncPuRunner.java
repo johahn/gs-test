@@ -15,13 +15,13 @@
  */
 package com.avanza.gs.test;
 
+import org.openspaces.core.GigaSpace;
+import org.springframework.context.ApplicationContext;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-
-import org.openspaces.core.GigaSpace;
-import org.springframework.context.ApplicationContext;
 
 public class AsyncPuRunner implements PuRunner {
 
@@ -82,4 +82,8 @@ public class AsyncPuRunner implements PuRunner {
 		return get(() -> puRunner.getPrimaryInstanceApplicationContext(partition));
 	}
 
+	@Override
+	public int getNumInstances() {
+		return puRunner.getNumInstances();
+	}
 }

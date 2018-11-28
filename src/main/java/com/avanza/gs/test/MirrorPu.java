@@ -15,14 +15,14 @@
  */
 package com.avanza.gs.test;
 
-import java.io.IOException;
-import java.util.Properties;
-
 import org.openspaces.core.GigaSpace;
 import org.openspaces.core.properties.BeanLevelProperties;
 import org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainer;
 import org.openspaces.pu.container.integrated.IntegratedProcessingUnitContainerProvider;
 import org.springframework.context.ApplicationContext;
+
+import java.io.IOException;
+import java.util.Properties;
 
 public class MirrorPu implements PuRunner {
 
@@ -94,5 +94,8 @@ public class MirrorPu implements PuRunner {
 		return container.getApplicationContext();
 	}
 
-
+	@Override
+	public int getNumInstances() {
+		return 1;
+	}
 }

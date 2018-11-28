@@ -17,7 +17,7 @@ package com.avanza.gs.test;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UniqueSpaceNameLookupTest {
 
@@ -27,4 +27,5 @@ public class UniqueSpaceNameLookupTest {
         assertEquals("test-2", UniqueSpaceNameLookup.getSpaceNameWithSequence("test"));
         assertEquals("testa-1", UniqueSpaceNameLookup.getSpaceNameWithSequence("testa"));
     }
+
 }

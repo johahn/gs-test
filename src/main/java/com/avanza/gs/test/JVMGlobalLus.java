@@ -15,11 +15,10 @@
  */
 package com.avanza.gs.test;
 
-import java.util.UUID;
-
+import com.j_spaces.core.IJSpace;
 import org.openspaces.core.space.UrlSpaceConfigurer;
 
-import com.j_spaces.core.IJSpace;
+import java.util.UUID;
 
 public final class JVMGlobalLus {
 	
@@ -37,7 +36,10 @@ public final class JVMGlobalLus {
 	private static final IJSpace DUMMY_SPACE;
 	
 	static {
-		DUMMY_SPACE = new UrlSpaceConfigurer("/./dummy-space-to-keep-lus-running").lookupGroups(LOOKUP_GROUP_NAME).create();
+		DUMMY_SPACE = new UrlSpaceConfigurer("/./dummy-space-to-keep-lus-running")
+
+				.lookupGroups(LOOKUP_GROUP_NAME)
+				.create();
 	}
 	
 	public static String getLookupGroupName() {

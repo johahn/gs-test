@@ -115,12 +115,13 @@ public final class PartitionedPu implements PuRunner {
 	
 	@Override
 	public GigaSpace getClusteredGigaSpace() {
-		return GigaSpace.class.cast(getPrimaryInstanceApplicationContext(0).getBean(this.gigaSpaceBeanName)).getClustered();
+		return GigaSpace.class.cast(getPrimaryInstanceApplicationContext(1).getBean(this.gigaSpaceBeanName)).getClustered();
 	}
 
 	@Override
 	public ApplicationContext getPrimaryInstanceApplicationContext(int partition) {
-		IntegratedProcessingUnitContainer container = (IntegratedProcessingUnitContainer) this.container.getProcessingUnitContainers()[partition];
+		int index = (partition - 1) * (1 + numberOfBackups);
+		IntegratedProcessingUnitContainer container = (IntegratedProcessingUnitContainer) this.container.getProcessingUnitContainers()[index];
 		return container.getApplicationContext();
 	}
 
